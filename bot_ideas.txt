@@ -1,0 +1,1 @@
+alternate function for roll, without parameters
