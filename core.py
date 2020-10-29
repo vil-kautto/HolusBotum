@@ -6,7 +6,7 @@ from cmds import *
 
 settings = {}
 
-# load 
+# load settings amd print details to console
 def load_settings():
     config = ConfigParser()
     config.read('options.ini')
@@ -24,29 +24,23 @@ def load_modules():
     for file in modules:
         print('Loaded module: {}'.format(file))
         
-    
-@commands.command()
-async def ip(message):
-    await c_ip(message)
+        
+# this next section is dedicated for commands in 'cmds' directory
+@commands.command(name='ip')
+async def _ip(message):
+    await ip(message)
 
     
-@commands.command()
-async def millo(message):
+@commands.command(name='millo')
+async def _millo(message):
     await c_millo(message)
     
-def setup(client):
-    client.add_command(ip)
-    client.add_command(millo)
-    
-
-async def on_ready(self):
-    print('\nLogged in as', self.user)
-    print('Prefix: {}'.format(settings['prefix']))
-    print('Volume: {}'.format(int(settings['volume'])*100))
-    await self.load_modules()
+def load_commands(client):
+    client.add_command(_ip)
+    #client.add_command(_millo)
     
 load_settings()
 client = commands.Bot(command_prefix=settings['prefix'])
-setup(client)
+load_commands(client)
 client.run(settings['token'])
 

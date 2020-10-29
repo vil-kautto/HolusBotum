@@ -1,10 +1,10 @@
-#from .help import help as c_help
-from .millo import millo as c_millo
-from .ping import ping as c_ping
-#from .player import play as c_player
-from .roll import roll as c_roll
-#from .rougen import rougen  as c_rougen
-#from .serverinfo import serverinfo as c_serverinfo
-#from .switch import switch as c_switch
-from .ip import ip as c_ip
-from .test import test as c_test
+#from .help import help
+from .millo import millo
+from .ping import ping
+#from .player import play
+from .roll import roll
+#from .rougen import rougen
+#from .serverinfo import serverinfo
+#from .switch import switch
+from .ip import ip
+from .test import test
