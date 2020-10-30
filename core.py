@@ -37,12 +37,12 @@ async def _millo(message):
     
 @commands.command(name='roll')
 async def _roll(message, *numbers):
-    if len(numbers == 0):
-        await roll20()
-    if len(numbers == 1):
-        await roll_max()
-    if len(numbers == 2):
-        await roll_min_max()
+    if len(numbers) == 0:
+        await roll(message)
+    if len(numbers) == 1:
+        await roll_max(message, numbers)
+    if len(numbers) == 2:
+        await roll_min_max(message, numbers)
     else:
         await roll_error(message)
     
