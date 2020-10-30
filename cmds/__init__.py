@@ -5,6 +5,6 @@ from .ping import ping
 from .roll import roll
 #from .rougen import rougen
 #from .serverinfo import serverinfo
-#from .switch import switch
+from .switch import switch
 from .ip import ip
 from .test import test
