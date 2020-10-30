@@ -5,6 +5,7 @@ from pathlib import Path
 from cmds import *
 
 settings = {}
+global switch_state
 
 # load settings amd print details to console
 def load_settings():
@@ -30,14 +31,31 @@ def load_modules():
 async def _ip(message):
     await ip(message)
 
-    
 @commands.command(name='millo')
 async def _millo(message):
-    await c_millo(message)
+    await millo(message)
+    
+@commands.command(name='roll')
+async def _roll(message, *numbers):
+    if len(numbers == 0):
+        await roll20()
+    if len(numbers == 1):
+        await roll_max()
+    if len(numbers == 2):
+        await roll_min_max()
+    else:
+        await roll_error(message)
+    
+@commands.command(name='switch')
+async def _switch(message):
+    global switch_state
+    await switch(message, switch_state)
     
 def load_commands(client):
     client.add_command(_ip)
-    #client.add_command(_millo)
+    client.add_command(_millo)
+    client.add_command(_roll)
+    client.add_command(_switch)
     
 load_settings()
 client = commands.Bot(command_prefix=settings['prefix'])
