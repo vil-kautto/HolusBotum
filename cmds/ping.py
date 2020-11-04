@@ -1,3 +1,3 @@
 
-async def ping(ctx):
-    ctx.channel.send('Bot Latency: ' + client.latency())
+async def ping(message, latency):
+    await message.channel.send(latency)

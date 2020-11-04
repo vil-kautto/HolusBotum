@@ -5,7 +5,6 @@ from pathlib import Path
 from cmds import *
 
 settings = {}
-global switch_state
 
 # load settings amd print details to console
 def load_settings():
@@ -17,6 +16,7 @@ def load_settings():
     print('Prefix: {}'.format(settings['prefix']))
     settings['volume'] = config.get('settings','default_volume')
     print('Volume: {}'.format(settings['volume']))
+    switch_state = True
     
 def load_modules():
     print('\nLoading modules...')
@@ -48,14 +48,19 @@ async def _roll(message, *numbers):
     
 @commands.command(name='switch')
 async def _switch(message):
-    global switch_state
     await switch(message, switch_state)
+    
+@commands.command(name='ping')
+async def _ping(message):
+    latency = 'The bot latency is {:d}ms'.format(int(client.latency*1000))
+    await ping(message, latency)
     
 def load_commands(client):
     client.add_command(_ip)
     client.add_command(_millo)
     client.add_command(_roll)
     client.add_command(_switch)
+    client.add_command(_ping)
     
 load_settings()
 client = commands.Bot(command_prefix=settings['prefix'])
