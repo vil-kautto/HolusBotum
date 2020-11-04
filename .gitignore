@@ -3,3 +3,4 @@ options.ini
 core-old.py
 lazy-cmd.bat
 ./cmds/__pycache__/
+*.pyc
