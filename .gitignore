@@ -2,4 +2,4 @@ options.ini
 .idea/
 core-old.py
 lazy-cmd.bat
-cmds/__pycache__/
+./cmds/__pycache__/
