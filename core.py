@@ -27,15 +27,15 @@ def load_modules():
         
         
 # this next section is dedicated for commands in 'cmds' directory
-@commands.command(name='ip')
+@commands.command(name='ip', brief="Displays host's public ip adress")
 async def _ip(message):
     await ip(message)
 
-@commands.command(name='millo')
+@commands.command(name='millo', brief='Time related information')
 async def _millo(message):
     await millo(message)
     
-@commands.command(name='roll')
+@commands.command(name='roll', brief='Rolls A dice', description='Rolls a die depending on the number of parameter numbers [0-2]')
 async def _roll(message, *numbers):
     if len(numbers) == 0:
         await roll(message)
@@ -46,11 +46,11 @@ async def _roll(message, *numbers):
     else:
         await roll_error(message)
     
-@commands.command(name='switch')
+@commands.command(name='switch', brief='Flips the switch')
 async def _switch(message):
     await switch(message, switch_state)
     
-@commands.command(name='ping')
+@commands.command(name='ping', brief="Displays bot's latency")
 async def _ping(message):
     latency = 'The bot latency is {:d}ms'.format(int(client.latency*1000))
     await ping(message, latency)
@@ -59,7 +59,7 @@ def load_commands(client):
     client.add_command(_ip)
     client.add_command(_millo)
     client.add_command(_roll)
-    client.add_command(_switch)
+    #client.add_command(_switch)
     client.add_command(_ping)
     
 load_settings()
