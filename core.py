@@ -27,15 +27,30 @@ def load_modules():
         
         
 # this next section is dedicated for commands in 'cmds' directory
-@commands.command(name='ip', brief="Displays host's public ip adress")
+
+# Used in server hosting within private circles
+# Disable this in the load section, if you don't want people to find out your public ip
+@commands.command(
+    name='ip',
+    brief="- Displays the host computer's ip",
+    description="If the bot's owner hosts servers, use this command to get his public ip"
+    )
 async def _ip(message):
     await ip(message)
 
-@commands.command(name='millo', brief='Time related information')
+@commands.command(
+    name='millo',
+    brief='- Displays time based information',
+    description='answers one of the most important questions ever existed'
+    )
 async def _millo(message):
     await millo(message)
     
-@commands.command(name='roll', brief='Rolls A dice', description='Rolls a die depending on the number of parameter numbers [0-2]')
+@commands.command(
+    name='roll',
+    brief='- Rolls A dice',
+    description='Rolls a die depending on the number of parameter numbers [0-2]'
+    )
 async def _roll(message, *numbers):
     if len(numbers) == 0:
         await roll(message)
@@ -50,12 +65,17 @@ async def _roll(message, *numbers):
 async def _switch(message):
     await switch(message, switch_state)
     
-@commands.command(name='ping', brief="Displays bot's latency")
+@commands.command(
+    name='ping',
+    brief="- Displays bot's latency",
+    description='Rolls a die depending on the number of parameter numbers [0-2]'
+    )
 async def _ping(message):
     latency = 'The bot latency is {:d}ms'.format(int(client.latency*1000))
     await ping(message, latency)
     
 def load_commands(client):
+    
     client.add_command(_ip)
     client.add_command(_millo)
     client.add_command(_roll)
